@@ -8,6 +8,7 @@ admin.site.register(Attandant)
 admin.site.register(OurProgram)
 admin.site.register(FAQ)
 admin.site.register(Sponsor)
+admin.site.register(Register)
 
 
 admin.site.site_header = "2D18 Administration"

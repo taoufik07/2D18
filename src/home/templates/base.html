@@ -30,7 +30,23 @@
 	 <div class="preloader">
 		<div class="sk-rotating-plane"></div>
 	 </div>
-
+<div class="modal fade in" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content" style="border-radius:0">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						{% if messages %}
+							{% for message in messages %}
+								 <div class="alert alert-success" style="border-radius:0; text-align:center;"><h3>{{ message }}</h3></div>
+							{% endfor %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
 <!-- NAVIGATION LINKS  -->
 	<div class="navbar navbar-fixed-top custom-navbar" role="navigation">
 		<div class="container">
@@ -49,6 +65,7 @@
 					<li><a href="#overview" class="smoothScroll">Overview</a></li>
 					<li><a href="#speakers" class="smoothScroll">Speakers</a></li>
 					<li><a href="#program" class="smoothScroll">Programs</a></li>
+					<li><a href="#register" class="smoothScroll">Register</a></li>
 					<li><a href="#sponsors" class="smoothScroll">Sponsors</a></li>
 					<li><a href="#contact" class="smoothScroll">Contact</a></li>
 				</ul>
@@ -84,6 +101,13 @@
 		<script src="{% static "js/custom.js" %}"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		{% if messages %}
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					$('#myModal').modal('show');
+				});
+			</script>
+		{% endif %}
 	</footer>
 </body>
 </html>

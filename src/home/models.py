@@ -12,6 +12,11 @@ class SiteInfo(models.Model):
 	video_link = models.URLField()
 	conference_title = models.CharField(max_length=200, null=True, blank=True)
 	conference_subtitle = models.CharField(max_length=200, null=True, blank=True)
+	sponsor_title = models.CharField(max_length=100, null=True, blank=True)
+	sponsor_description = models.TextField(null=True, blank=True)
+	register_title = models.CharField(max_length=100, null=True, blank=True)
+	register_subtitle = models.TextField(null=True, blank=True)
+	register_description = models.TextField(null=True, blank=True)
 	contact_title = models.CharField(max_length=100, null=True, blank=True)
 	contact_description = models.TextField(null=True, blank=True)
 	facebook = models.URLField(null=True, blank=True)
@@ -56,3 +61,15 @@ class Sponsor(models.Model):
 	def __str__(self):
 		return self.title
 
+class Register(models.Model):
+	first_name = models.CharField(max_length=100)
+	last_name = models.CharField(max_length=100)
+	gsm = models.CharField("Phone number", max_length=10, null=True, blank=True)
+	email = models.EmailField('Email Address')
+
+	class Meta:
+		verbose_name = "Registred"
+		verbose_name_plural = "Registred"
+
+	def __str__(self):
+		return "{} {}".format(self.first_name, self.last_name)

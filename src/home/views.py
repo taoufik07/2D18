@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.contrib import messages
 
 from contact.forms import ContactForm
 	
+from .forms import RegisterForm
 from .models import *
 
 
@@ -15,5 +18,16 @@ def home(request):
 		'faq': FAQ.objects.all(),
 		'sponsors': Sponsor.objects.all(),
 		'contact_form': ContactForm(),
+		'register_form': RegisterForm(),
 	}
 	return render(request, 'home.html', context)
+
+
+
+def register(request):
+	if request.method == "POST":
+		form = RegisterForm(request.POST)
+		if form.is_valid():
+			form.save()
+			messages.success(request, 'Successfuly registred')
+	return redirect(reverse("home:home")+"#register")
