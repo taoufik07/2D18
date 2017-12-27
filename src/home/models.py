@@ -1,5 +1,6 @@
 from django.db import models
 
+from django.core.validators import RegexValidator
 
 class SiteInfo(models.Model):
 	title = models.CharField(max_length=200)
@@ -69,7 +70,17 @@ STATUS = (
 class Register(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
-	gsm = models.CharField("Phone number", max_length=10, null=True, blank=True)
+	phone_regex = RegexValidator(
+		regex=r'^[0-9]{10}$',
+		message="Merci d'insérer un numéro valide"
+	)
+	gsm = models.CharField(
+		"Phone number",
+		validators=[phone_regex],
+		max_length=10,
+		null=True,
+		blank=True
+	)
 	email = models.EmailField('Email Address')
 	status = models.CharField(choices=STATUS, max_length=2)
 
