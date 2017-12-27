@@ -61,11 +61,17 @@ class Sponsor(models.Model):
 	def __str__(self):
 		return self.title
 
+STATUS = (
+	('1', 'Professor'),
+	('2', 'Student'),
+)
+
 class Register(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
 	gsm = models.CharField("Phone number", max_length=10, null=True, blank=True)
 	email = models.EmailField('Email Address')
+	status = models.CharField(choices=STATUS, max_length=2)
 
 	class Meta:
 		verbose_name = "Registred"
