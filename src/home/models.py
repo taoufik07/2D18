@@ -82,7 +82,13 @@ class Register(models.Model):
 		blank=True
 	)
 	email = models.EmailField('Email Address')
-	status = models.CharField(choices=STATUS, max_length=2)
+	birthday = models.DateField(null=True, blank=True)
+	status = models.CharField(
+		choices=STATUS,
+		max_length=2,
+		null=True,
+		blank=True
+	)
 
 	class Meta:
 		verbose_name = "Registred"
